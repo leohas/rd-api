@@ -1,6 +1,15 @@
 import express, { Request, Response } from 'express'
+import cors from 'cors'
+import bodyParser from 'body-parser'
+import multer from 'multer'
 
 const app = express()
+
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.use(multer().single(''))
+
+app.use(cors())
 
 app.get('/', (req: Request, res: Response) => {
     return res.json({ status: 'ok' })
