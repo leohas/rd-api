@@ -1,0 +1,20 @@
+---
+name: "\U0001F525 [FEATURE] NOME DA FEATURE"
+about: Crie uma issue referente a uma nova feature
+title: "[FEATURE] Olha que massa"
+labels: Feature
+assignees: ''
+
+---
+
+**Descrição da feature**
+Breve descrição da feature
+
+**Soluciona um problema? Se sim, qual?**
+Nos conte se a feature soluciona um problema, e se solucionar, descreva-o.
+
+**Tecnologias utilizadas**
+Breve informação das tecnologias que vão ser utilizadas para elaborar a feature.
+
+**Informações adicionais**
+Se necessário, nos conte algo que acha útil.
