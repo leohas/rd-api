@@ -1,7 +1,7 @@
 ---
 name: "\U0001F4A3 [BUG] NOME DO BUG \U0001F4A3"
 about: Crie uma issue referente a um bug
-title: "[BUG] Olha a bomba"
+title: "\U0001F4A3 [BUG] nome do bug \U0001F4A3"
 labels: bug
 assignees: ''
 
