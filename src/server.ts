@@ -3,7 +3,6 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 import multer from 'multer'
 
-
 import { checkApiKey } from './services/middlewares'
 
 const app = express()
@@ -20,9 +19,9 @@ app.get('/', (req: Request, res: Response) => {
 })
 
 app.get('/version', (req: Request, res: Response) => {
-    const version = require('../package.json').version; 
+    const version = process.env.npm_package_version; 
     
-    res.send(`Versão atual:${version}`);   
+    res.send(`Versão atual: ${version}`);   
 })
 
 app.listen(1234, () => {
