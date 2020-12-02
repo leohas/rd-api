@@ -6,4 +6,3 @@ admin.initializeApp({
 })
 
 export const fbRef = admin.database().ref()
-export const fbAuth = admin.auth()
