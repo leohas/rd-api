@@ -5,6 +5,7 @@ import multer from 'multer'
 
 import { checkApiKey } from './services/middlewares'
 import userRouter from './controllers/userRouter'
+import productRouter from './controllers/productRouter'
 
 const app = express()
 
@@ -15,6 +16,7 @@ app.use(multer().single(''))
 app.use(cors())
 app.use(checkApiKey)
 app.use(userRouter)
+app.use(productRouter)
 
 app.get('/', (req: Request, res: Response) => {
     return res.json({ status: 'ok' })
