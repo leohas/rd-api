@@ -28,3 +28,7 @@ export class RdError extends Error {
 
 export const invalidApiKeyError = new RdError('You can not use our API, try using a valid API key.', 403)
 export const requiredApiKeyError = new RdError('You can not use our API because an API key is required.', 401)
+export const requiredEmailError = new RdError('You need to insert your email!', 406)
+export const requiredPasswordError = new RdError('You need to insert your password!', 406)
+export const requiredEmailAndPasswordError = new RdError('You need to insert your email and password!', 406)
+
