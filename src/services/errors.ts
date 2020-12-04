@@ -31,4 +31,3 @@ export const requiredApiKeyError = new RdError('You can not use our API because 
 export const requiredEmailError = new RdError('You need to insert your email!', 406)
 export const requiredPasswordError = new RdError('You need to insert your password!', 406)
 export const requiredEmailAndPasswordError = new RdError('You need to insert your email and password!', 406)
-
