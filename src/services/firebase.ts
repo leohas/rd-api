@@ -5,5 +5,5 @@ admin.initializeApp({
     databaseURL: 'https://rd-alagoana.firebaseio.com'
 })
 
-export const fbRef = admin.database().ref()
+export const fbDb = admin.database().ref()
 export const fbAuth = admin.auth()

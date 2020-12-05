@@ -1,6 +1,6 @@
 import { Request, Response, Router} from 'express'
 import { requiredProductDataError } from '../services/errors'
-import { fbRef } from '../services/firebase'
+import { fbDb } from '../services/firebase'
 
 const productRouter = Router()
 
@@ -11,7 +11,7 @@ const registerProduct = async(req: Request, res: Response) => {
         if (!productName || !productDescription || !productPrice || !productAmount) 
             throw requiredProductDataError
 
-        await fbRef.child('products').push().set({
+        await fbDb.child('products').push().set({
             name: productName,
             description: productDescription,
             amount: productAmount,
