@@ -1,5 +1,5 @@
 import { Request, Response, Router} from 'express'
-import { emptyProductError, requiredProductDataError } from '../services/errors'
+import { requiredProductDataError } from '../services/errors'
 import { fbDb } from '../services/firebase'
 
 const productRouter = Router()
@@ -30,7 +30,7 @@ const listProducts = async(req: Request, res: Response) => {
             checkProduct = snapshot.hasChild('products')
         })
 
-        if (!checkProduct) throw emptyProductError
+        if (!checkProduct) res.send({})
 
         await fbDb.child('products').once('value', snapshot => {
             res.send(snapshot.val())
