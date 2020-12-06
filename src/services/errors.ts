@@ -35,4 +35,4 @@ export const requiredPasswordError = new RdError('You need to insert your passwo
 export const requiredEmailAndPasswordError = new RdError('You need to insert your email and password!', 406)
 // Product Errors
 export const requiredProductDataError = new RdError('You need to specify all the data of the product!', 406)
-export const emptyProductError = new RdError('There are no products registered', 404)
+export const emptyProductError = new RdError('There are no products registered!', 404)
