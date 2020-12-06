@@ -25,12 +25,8 @@ const registerProduct = async(req: Request, res: Response) => {
 
 const listProducts = async(req: Request, res: Response) => {
     try {
-        let checkProduct
-        await fbDb.once('value', snapshot => {
-            checkProduct = snapshot.hasChild('products')
-        })
-
-        if (!checkProduct) res.send({})
+        const products = (await fbDb.child('products').once('value')).val()
+        if (!products) res.send({}); else res.send(products)
 
         await fbDb.child('products').once('value', snapshot => {
             res.send(snapshot.val())
