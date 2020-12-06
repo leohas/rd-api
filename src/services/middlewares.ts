@@ -1,5 +1,5 @@
 import { Request, Response, RequestHandler, NextFunction } from 'express'
-import { fbRef } from './firebase'
+import { fbDb } from './firebase'
 import { requiredApiKeyError, invalidApiKeyError } from './errors'
 
 /**
@@ -13,7 +13,7 @@ import { requiredApiKeyError, invalidApiKeyError } from './errors'
  export const checkApiKey: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
    try {
      const { key } = req.headers
-     const apiKey: string = (await fbRef.child('secrets/apiKey').once('value')).val()
+     const apiKey: string = (await fbDb.child('secrets/apiKey').once('value')).val()
 
      if (!key) throw requiredApiKeyError
      if (key && key !== apiKey) throw invalidApiKeyError
