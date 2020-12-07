@@ -23,6 +23,17 @@ const registerProduct = async(req: Request, res: Response) => {
     return res.status(200).send({status: 'ok'})
 }
 
+const listProducts = async(req: Request, res: Response) => {
+    try {
+        const products = (await fbDb.child('products').once('value')).val() || {}
+        return res.send(products)
+    } catch(error) {
+        return res.send(error.toJson()) 
+    }
+}
+
+productRouter.get('/products', listProducts)
+
 productRouter.post('/products', registerProduct)
 
 export default productRouter
