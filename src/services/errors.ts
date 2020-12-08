@@ -35,3 +35,4 @@ export const requiredPasswordError = new RdError('You need to insert your passwo
 export const requiredEmailAndPasswordError = new RdError('You need to insert your email and password!', 406)
 // Product Errors
 export const requiredProductDataError = new RdError('You need to specify all the data of the product!', 406)
+export const invalidTypeDataError = new RdError('You must insert a number in this fields(Amount/Price)!', 403)
