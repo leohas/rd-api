@@ -34,6 +34,7 @@ const registerProduct = async(req: Request, res: Response) => {
 const listProducts = async(req: Request, res: Response) => {
     try {
         const products = (await fbDb.child('products').once('value')).val() || {}
+
         return res.send(products)
     } catch(error) {
         return res.send(error.toJson()) 
