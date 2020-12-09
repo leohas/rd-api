@@ -36,17 +36,16 @@ const productList = async(req: Request, res: Response) => {
 
 const updateProduct = (req: Request, res: Response) => {
     try{
-        const { productId } =  req.body
-        console.log(typeof(req.body.productPrice))
+        const { productId, productName, productDescription, productPrice, productAmount  } =  req.body
+        
         let produto: Produto = {
-            name: req.body.productName,
-            description: req.body.productDescription,
-            price: req.body.productPrice,
-            amount: req.body.productAmount
+            name: (productName) as string,
+            description: (productDescription) as string,
+            price: (productPrice) as number,
+            amount: (productAmount) as number
         }
         fbDb.child(`products/${productId}`).update(produto)
-        console.log(typeof(req.body.productPrice))
-        console.log(typeof(req.body.productName))
+        console.log(typeof(productPrice))
         return res.json({status: 'ok'})
     }catch(error) {
         return res.send(error.toJson())
