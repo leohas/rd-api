@@ -1,18 +1,11 @@
 import { Request, Response, Router} from 'express'
 import { invalidTypeDataError, requiredProductDataError } from '../services/errors'
 import { fbDb } from '../services/firebase'
+import Produto from '../types' 
 
 const productRouter = Router()
 
-// Esta interface deveria estar aqui? Ou em um arquivo específico de interfaces?
-interface Produto {
-    name?: String,
-    description?: String,
-    amount?: Number,
-    price?: Number 
-}
-
-const registerProduct = async(req: Request, res: Response) => {
+const productRegistration = async(req: Request, res: Response) => {
     try {
         const { productName, productDescription, productAmount, productPrice } = req.body
 
@@ -31,7 +24,7 @@ const registerProduct = async(req: Request, res: Response) => {
     return res.status(200).send({status: 'ok'})
 }
 
-const listProducts = async(req: Request, res: Response) => {
+const productList = async(req: Request, res: Response) => {
     try {
         const products = (await fbDb.child('products').once('value')).val() || {}
 
@@ -41,33 +34,30 @@ const listProducts = async(req: Request, res: Response) => {
     }
 }
 
-const setProduct = async(req: Request, res: Response) => {
+const updateProduct = (req: Request, res: Response) => {
     try{
-        let produtoNovo: Produto = {}
-        const { productId, productName, productDescription, productAmount, productPrice } = req.body
-        
-        // Não sabemos como validar esta condição. 
-        if (productAmount !== Number && productPrice !== Number) throw invalidTypeDataError
-        
-        // Poderíamos colocar em uma função os 4 ifs?
-        if (productName) produtoNovo.name = productName
-        if (productDescription) produtoNovo.description = productDescription
-        if (productAmount) produtoNovo.amount = productAmount
-        if (productPrice) produtoNovo.price = productPrice
-
-        fbDb.child(`products/${productId}`).update(produtoNovo)
-
+        const { productId } =  req.body
+        console.log(typeof(req.body.productPrice))
+        let produto: Produto = {
+            name: req.body.productName,
+            description: req.body.productDescription,
+            price: req.body.productPrice,
+            amount: req.body.productAmount
+        }
+        fbDb.child(`products/${productId}`).update(produto)
+        console.log(typeof(req.body.productPrice))
+        console.log(typeof(req.body.productName))
         return res.json({status: 'ok'})
     }catch(error) {
         return res.send(error.toJson())
     }
 }
 
-productRouter.get('/product', listProducts)
+productRouter.get('/product', productList)
 
-productRouter.post('/product', registerProduct)
+productRouter.post('/product', productRegistration)
 
-productRouter.put('/product', setProduct)
+productRouter.put('/product', updateProduct)
 
 export default productRouter
 
